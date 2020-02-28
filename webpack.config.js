@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const config = require('../assets/assets.config.js')
 
 const pageScriptDir = config.pageScriptDir || "assets/js/pagescripts";
@@ -21,7 +22,7 @@ fs
 
 // Webpack Config
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: (Object.keys(jsEntries).length !== 0) ? jsEntries : "./index.js",
   output: {
     path: __dirname + "/../dist",
@@ -41,17 +42,27 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
-          // Translates CSS into CommonJS
+        use: [ 
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../dist/"
+            }
+          },
           'css-loader',
-          // Compiles Sass to CSS
           'sass-loader',
         ],
-      }
+      },
     ]
-  }
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      path: '../dist/css',
+      filename: 'style.css',
+    }),
+  ],
   
   
 }
