@@ -1,13 +1,14 @@
 {
     "name": "assetessa",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "A wabpack asset pipeline management tool.",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack",
         "watch": "webpack --watch",
-        "init": "node ./init"
+        "init": "node index",
+        "start": "npm run init && npm run watch"
     },
     "keywords": [],
     "author": "Benjamin Wright",
