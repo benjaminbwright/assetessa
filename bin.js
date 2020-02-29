@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const run = require('node-run-cmd').run;
 const init = require('./init');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
