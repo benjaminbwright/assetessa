@@ -1,9 +1,15 @@
 const fs = require('fs');
 const path = require('path');
+const init = require('./init');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const config = require('../assets/assets.config.js')
 
-const pageScriptDir = config.pageScriptDir || "assets/js/pagescripts";
+if (fs.readdirSync("../").indexOf("assets") === -1) {
+  init();
+}
+
+// const config = require('../assets/assets.config.js')
+// const pageScriptDir = config.pageScriptDir || "assets/js/pagescripts";
+const pageScriptDir = "assets/js/pagescripts";
 
 // setup webpack entry for js from pagescripts
 const jsEntries = {
