@@ -3,17 +3,19 @@ const path = require('path');
 const init = require('./init');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+// initialize project
 if (fs.readdirSync("../").indexOf("assets") === -1) {
   init();
 }
 
-// const config = require('../assets/assets.config.js')
+const config = require('../assets/assets.config.js')
 // const pageScriptDir = config.pageScriptDir || "assets/js/pagescripts";
 const pageScriptDir = "assets/js/pagescripts";
 
 // setup webpack entry for js from pagescripts
 const jsEntries = {
-  main: path.join(__dirname,"../",pageScriptDir,"main.js")
+  main: path.join(__dirname,"../",pageScriptDir,"main.js"),
+  ...config.jsEntries
 }
 
 fs
@@ -28,7 +30,7 @@ fs
 
 // Webpack Config
 module.exports = {
-  mode: "production",
+  mode: config.mode,
   entry: (Object.keys(jsEntries).length !== 0) ? jsEntries : "./index.js",
   output: {
     path: __dirname + "/../dist",
