@@ -15,7 +15,6 @@ switch (input) {
     break;
   case 'build':
     console.log('Bundling assets...');
-    run('npx webpack');
     compiler.run((err, stats) => {
       if (err) {
         console.log(err);
