@@ -4,9 +4,8 @@ const init = require('./init');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // initialize project
-if (fs.readdirSync("../").indexOf("assets") === -1) {
-  init();
-}
+init();
+
 
 const config = require('../assets/assets.config.js')
 // const pageScriptDir = config.pageScriptDir || "assets/js/pagescripts";
@@ -57,8 +56,17 @@ module.exports = {
               publicPath: "../dist/"
             }
           },
-          'css-loader',
-          'sass-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              import: true
+            }
+
+          },
+          {
+            loader: 'sass-loader',
+          }
+          
         ],
       },
     ]

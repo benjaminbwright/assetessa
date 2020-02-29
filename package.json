@@ -25,5 +25,8 @@
         "webpack": "^4.41.6",
         "webpack-cli": "^3.3.11"
     },
-    "dependencies": {}
+    "dependencies": {
+        "normalize-scss": "^7.0.1",
+        "normalize.css": "^8.0.1"
+    }
 }
