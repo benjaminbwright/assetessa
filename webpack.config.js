@@ -7,23 +7,23 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 init();
 
 
-const config = require('../assets/assets.config.js')
+const config = require('../../assets/assets.config.js')
 // const pageScriptDir = config.pageScriptDir || "assets/js/pagescripts";
 const pageScriptDir = "assets/js/pagescripts";
 
 // setup webpack entry for js from pagescripts
 const jsEntries = {
-  main: path.join(__dirname,"../",pageScriptDir,"main.js"),
+  main: path.join(__dirname,"../../",pageScriptDir,"main.js"),
   ...config.jsEntries
 }
 
 fs
-  .readdirSync(__dirname + "/../" + pageScriptDir)
+  .readdirSync(__dirname + "/../../" + pageScriptDir)
   .filter(function(file) {
     return (file.indexOf(".") !== 0) && (file.slice(-3) === ".js");
   })
   .forEach(function(file) {
-    jsEntries[file.split('.')[0]] = path.join(__dirname,'../',pageScriptDir,file);
+    jsEntries[file.split('.')[0]] = path.join(__dirname,'../../',pageScriptDir,file);
   });
   console.log(jsEntries)
 
@@ -32,7 +32,7 @@ module.exports = {
   mode: config.mode,
   entry: (Object.keys(jsEntries).length !== 0) ? jsEntries : "./index.js",
   output: {
-    path: __dirname + "/../dist",
+    path: __dirname + "../../../dist",
     filename: "[name].bundle.js"
   },
   module: {
@@ -53,7 +53,7 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: "../dist/"
+              publicPath: "../../dist/"
             }
           },
           {
@@ -75,7 +75,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      path: '../dist/css',
+      path: '../../dist/css',
       filename: 'style.css',
     }),
   ],
